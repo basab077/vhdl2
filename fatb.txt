@@ -1,0 +1,83 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity fatb is
+end fatb;
+
+architecture test of fatb is
+     
+	 component fa
+	 
+	 port(
+	       a : in std_ulogic;
+		  b : in std_ulogic;
+	     cin : in std_ulogic;
+	    sum : out std_ulogic;
+	     carry : out std_ulogic
+		  
+		  );
+		  
+	 end component;
+	 
+	 signal a,b,cin,sum,carry : std_ulogic;
+	 
+
+begin full_adder : fa port map(a=>a, b=>b , cin=>cin , sum=>sum , carry=>carry);
+
+      process begin
+	  
+	  a<='X';
+	  b<='X';
+	  cin<='X';
+	  wait for 1 ns;
+	  
+	  a<='0';
+	  b<='0';
+	  cin<='0';
+	  wait for 1 ns;
+	  
+	  a<='0';
+	  b<='0';
+	  cin<='1';
+	  wait for 1 ns;
+	  
+	  a<='0';
+	  b<='1';
+	  cin<='0';
+	  wait for 1 ns;
+	  
+	  a<='0';
+	  b<='1';
+	  cin<='1';
+	  wait for 1 ns;
+	  
+	  a<='1';
+	  b<='0';
+	  cin<='0';
+	  wait for 1 ns;
+	  
+	  a<='1';
+	  b<='0';
+	  cin<='1';
+	  wait for 1 ns;
+	  
+	  a<='1';
+	  b<='1';
+	  cin<='0';
+	  wait for 1 ns;
+	  
+	  a<='1';
+	  b<='1';
+	  cin<='1';
+	  wait for 1 ns;
+	  
+	  assert false report "Reached end of test";
+		wait;
+		
+		
+		end process;
+		
+	end test;
+	  
+	 
+	 

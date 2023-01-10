@@ -1,0 +1,61 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity muxtb is
+end muxtb;
+
+architecture test of muxtb is
+  
+   component mux
+    
+	 port(
+	     a: in std_ulogic;
+		 b:  in std_ulogic;
+		 c:  in std_ulogic;
+		 d:  in std_ulogic;
+		 s0:  in std_ulogic;
+		 s1:  in std_ulogic;
+		 
+		 y:   out std_ulogic
+		
+		);
+		
+	end component;
+	
+	signal a,b,c,d,s0,s1,y : std_ulogic;
+	
+begin multiplexer : mux port map(a=>a, b=>b , c=>c , d=>d , s0=>s0 , s1=>s1 , y=>y);
+ 
+     process begin
+	 
+	 a<='1';
+	 b<='0';
+	 c<='1';
+	 d<='0';
+	 
+	 
+	    s0<='0';
+		s1<='0';
+		wait for 1 ns;
+		 
+		 s0<='0';
+		s1<='1';
+		wait for 1 ns;
+		
+		s0<='1';
+		s1<='0';
+		wait for 1 ns;
+		
+		s0<='1';
+		s1<='1';
+		wait for 1 ns;
+		
+		assert false report "Reached end of test";
+		wait;
+		
+		end process;
+		
+	end test;
+	
+	
+   
